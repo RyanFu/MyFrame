@@ -1,0 +1,134 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.jey.mymvp"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        /*** develop debug rdebug **/
+        debug {
+            buildConfigField "String", "BASE_HOST", "\"基础uri\""
+            //manifestPlaceholders = [JPUSH_APPKEY: "b93219354370ac5860c8478e",RONGYUN_APPKEY: "z3v5yqkbz3io0",YOUMENG_APPKEY:"58980f3b65b6d66cf10006da"]
+            applicationIdSuffix ".develop"
+            resValue "string", "app_name", "研发环境"
+        }
+
+        /*** release **/
+        release {
+            applicationIdSuffix ".release"
+            //manifestPlaceholders = [JPUSH_APPKEY: "3a23f6379112a7b2e70383cc",RONGYUN_APPKEY: "82hegw5uhhvgx",YOUMENG_APPKEY:"58a1562ff43e4810050012d9"]
+            buildConfigField "String", "BASE_HOST", "\"基础uri\""
+            resValue "string", "app_name", "金鱼财经"
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+
+        /*baidu {
+            manifestPlaceholders = [CHANNEL_VALUE: "baidu"]
+        }
+        qh360 {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "qh360"]
+        }
+        wandoujia {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "wandoujia"]
+        }
+        appchina {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "appchina"]
+        }
+        qq {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "qq"]
+        }
+        xiaomi {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "xiaomi"]
+        }
+        jifeng {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "jifeng"]
+        }
+        lenovo {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "lenovo"]
+        }
+        huawei {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "huawei"]
+        }
+        vivo {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "vivo"]
+        }
+        oppo {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "oppo"]
+        }
+        flyme {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "flyme"]
+        }
+        nubia {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "nubia"]
+        }
+        wostore {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "wostore"]
+        }
+        web {
+
+            manifestPlaceholders = [CHANNEL_VALUE: "web"]
+        }
+        /*anzhi{
+            manifestPlaceholders = [CHANNEL_VALUE: "anzhi"]
+        }
+        advert{
+            manifestPlaceholders = [CHANNEL_VALUE: "advert"]
+        }
+
+        samsung{
+            manifestPlaceholders = [CHANNEL_VALUE: "samsung"]
+        }
+        sougou{
+            manifestPlaceholders = [CHANNEL_VALUE: "sougou"]
+        }
+        jinli{
+            manifestPlaceholders = [CHANNEL_VALUE: "jinli"]
+        }
+        kuchuan{
+            manifestPlaceholders = [CHANNEL_VALUE: "kuchuan"]
+        }*/
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    testCompile 'junit:junit:4.12'
+    compile 'io.reactivex:rxjava:1.3.0'
+    compile 'com.jakewharton:butterknife:8.7.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    compile "com.squareup.retrofit2:retrofit:2.1.0"
+    compile "com.squareup.retrofit2:converter-gson:2.1.0"
+    compile "com.squareup.retrofit2:adapter-rxjava:2.1.0"
+    compile "com.squareup.retrofit2:converter-scalars:2.1.0"
+    compile "io.reactivex:rxandroid:1.2.1"
+}
